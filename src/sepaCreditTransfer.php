@@ -24,14 +24,7 @@ $customer = $stripe->customers->create([
   'source' => $source->id,
 ]);
 
-$source = $stripe->sources->update(
-  $source->id,
-  [
-    'owner' => [
-      'email' => 'amount_4242@example.com',
-    ],
-  ]
-);
+
 
 $source = $stripe->sources->update(
   $source->id,
@@ -45,12 +38,29 @@ sleep(10);
 echo "\n\Source: ";
 echo $source;
 $charge = $stripe->charges->create([
-  'amount' => 4242,
+  'amount' => 1000,
   'currency' => 'eur',
   'customer' => $customer->id,
   'source' => $source->id,
 ]);
 
+$source = $stripe->sources->update(
+  $source->id,
+  [
+    'owner' => [
+      'email' => 'amount_4242@example.com',
+    ],
+  ]
+);
+
+sleep(10);
+
+$charge = $stripe->charges->create([
+  'amount' => 4242,
+  'currency' => 'eur',
+  'customer' => $customer->id,
+  'source' => $source->id,
+]);
 
 $source_transactions = \Stripe\Source::allSourceTransactions($source->id);
 
