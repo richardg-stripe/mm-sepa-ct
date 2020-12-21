@@ -15,7 +15,7 @@ $source = $stripe->sources->create([
   'currency' => 'eur',
   'owner' => [
     'name' => 'Jenny Rosen',
-    'email' => 'jenny.rosen@example.com',
+    'email' => 'reference_customRef123@example.com',
   ],
 ]);
 
@@ -25,15 +25,6 @@ $customer = $stripe->customers->create([
 ]);
 
 
-
-$source = $stripe->sources->update(
-  $source->id,
-  [
-    'owner' => [
-      'email' => 'reference_customRef123@example.com',
-    ],
-  ]
-);
 sleep(10);
 echo "\n\Source: ";
 echo $source;
@@ -48,15 +39,14 @@ $source = $stripe->sources->update(
   $source->id,
   [
     'owner' => [
-      'email' => 'amount_4242@example.com',
+      'email' => 'reference_customRef456@example.com',
     ],
   ]
 );
-
 sleep(10);
 
 $charge = $stripe->charges->create([
-  'amount' => 4242,
+  'amount' => 1000,
   'currency' => 'eur',
   'customer' => $customer->id,
   'source' => $source->id,
