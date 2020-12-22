@@ -54,11 +54,22 @@ $charge = $stripe->charges->create([
 
 // This gets you:
 /*
-  "sepa_credit_transfer": {
-      "reference": "customRef123",
-      "sender_iban": "DE89370400440532013000",
-      "sender_name": "Jenny Rosen"
-  },
+  {
+    "id": "srctxn_1I0l7RGvip8Nac8HPJn5Qvos",
+    "object": "source_transaction",
+    "amount": 1000,
+    "created": 1608544557,
+    "currency": "eur",
+    "livemode": false,
+    "sepa_credit_transfer": {
+        "reference": "customRef123",
+        "sender_iban": "DE89370400440532013000",
+        "sender_name": "Jenny Rosen"
+    },
+    "source": "src_1I0l7PGvip8Nac8HGzYdDPia",
+    "status": "succeeded",
+    "type": "sepa_credit_transfer"
+  }
 */
 // You can also get them in real-time as a webhook with the event: 'source.transaction.created', which includes the same fields as above example.
 $source_transactions = \Stripe\Source::allSourceTransactions($source->id);
