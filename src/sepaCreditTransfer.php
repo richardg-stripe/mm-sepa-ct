@@ -52,6 +52,15 @@ $charge = $stripe->charges->create([
   'source' => $source->id,
 ]);
 
+// This gets you:
+/*
+  "sepa_credit_transfer": {
+      "reference": "customRef123",
+      "sender_iban": "DE89370400440532013000",
+      "sender_name": "Jenny Rosen"
+  },
+*/
+// You can also get them in real-time as a webhook with the event: 'source.transaction.created', which includes the same fields as above example.
 $source_transactions = \Stripe\Source::allSourceTransactions($source->id);
 
 echo "\n\n";
